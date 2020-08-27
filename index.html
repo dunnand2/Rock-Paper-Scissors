@@ -1,0 +1,106 @@
+<script>
+
+    game();
+
+    function computerPlay(){
+        // rock = 1, paper = 2, scissors = 3
+        let computerValue = Math.floor((Math.random() * 3) + 1);
+
+        // return Rock Paper or Scissors
+        switch(computerValue) {
+            case 1:
+                return 'rock';
+            case 2:
+                return 'paper';
+            case 3:
+                return 'scissors';
+        } 
+    }
+
+    function getUserPlay(){
+        let userInput = window.prompt("Enter Rock, Paper, or Scissors");
+        userInput.toLowerCase();
+        return userInput;
+    }
+
+    function singleRound(computerSelection, playerSelection) {
+
+
+        if (computerSelection == playerSelection) {
+            return "It\'s a tie!";
+        }
+        switch(computerSelection) {
+            case 'rock':
+                if (playerSelection == 'paper') {
+                    return "player";
+                } else {
+                    return "computer";
+                }
+            case 'paper':
+                if (playerSelection == 'scissors') {
+                    return "player";
+                } else {
+                    return "computer";
+                }
+            case 'scissors':
+                if (playerSelection == 'rock') {
+                    return "player";
+                } else {
+                    return "computer";
+                }
+        }
+        console.log("something went wrong!");
+    }
+
+    function game() {
+        let playerScore = 0;
+        let computerScore = 0;
+        let i = 0;
+
+        while (i < 5) {
+            let computerSelection = computerPlay();
+            let playerSelection = getUserPlay();
+            let result = singleRound(computerSelection, playerSelection);
+            if (result == "player") {
+                playerRoundWin(computerSelection, playerSelection);
+                i++;
+            } else if (result == "computer") {
+                computerRoundWin(computerSelection, playerSelection);
+                i++;
+            } else if (result == "It\'s a tie!") {
+                tieRound();
+            }
+        }
+        
+        if (playerScore > computerScore) {
+            console.log(`You Win!
+            Player Score: ${playerScore}
+            Computer Score: ${computerScore}`);
+        } else {
+            console.log(`Computer Win!
+            Player Score: ${playerScore}
+            Computer Score: ${computerScore}`);
+        }
+
+        function playerRoundWin(computerSelection, playerSelection) {
+            playerScore += 1;
+            console.log(`You Win! ${playerSelection} beats ${computerSelection}
+            Player Score: ${playerScore}
+            Computer Score: ${computerScore}`);
+        }
+
+        function computerRoundWin(computerSelection, playerSelection) {
+            computerScore += 1;
+            console.log(`You Lose! ${computerSelection} beats ${playerSelection}
+            Player Score: ${playerScore}
+            Computer Score: ${computerScore}`);
+        }
+
+        function tieRound() {
+            console.log(`It's a Tie!
+            Player Score: ${playerScore}
+            Computer Score: ${computerScore}`);
+        }
+    }
+
+</script>

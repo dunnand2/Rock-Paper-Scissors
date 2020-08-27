@@ -1,0 +1,6 @@
+Function that creates random R/P/S
+Take input from user on whether they would like Rock paper scissors
+Compare computer and user:
+    if same return tie
+    if different 
+        switch statements
